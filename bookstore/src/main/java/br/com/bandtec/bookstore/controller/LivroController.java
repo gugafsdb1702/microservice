@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bandtec.bookstore.domain.Livro;
+import br.com.bandtec.bookstore.domain.Opniao;
 import br.com.bandtec.bookstore.service.LivroService;
 
 @RestController
@@ -29,5 +32,11 @@ public class LivroController {
 		else {
 			return ResponseEntity.ok(livros);
 		}
+	}
+	
+	@PostMapping("livros/opniao")
+	public ResponseEntity<String> cadastrarOpniao(@RequestBody Opniao opniao){
+		service.adicionarOpniao(opniao);
+		return ResponseEntity.ok("Opnião cadastrada");
 	}
 }
